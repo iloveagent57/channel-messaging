@@ -123,3 +123,12 @@ STATIC_URL = '/static/'
 
 # Channels
 ASGI_APPLICATION = 'channel_messaging.routing.application'
+
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            'hosts': [('messaging.redis', 6379)],
+        },
+    },
+}

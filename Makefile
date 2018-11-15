@@ -88,3 +88,6 @@ validate_translations: fake_translations detect_changed_source_translations
 
 messaging-shell: # Run a shell on the messaging service container
 	docker exec -it messaging bash
+
+messaging-logs: # view the logs of the messaging container
+	docker-compose logs -f --tail=500 channel-messaging
