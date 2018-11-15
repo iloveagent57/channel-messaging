@@ -1,0 +1,25 @@
+db:
+  image: mysql:5.6
+  container_name: db
+  environment:
+    MYSQL_ROOT_PASSWORD: ""
+    MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+
+memcache:
+  image: memcached:1.4.24
+  container_name: memcache
+
+channel-messaging:
+  # Uncomment this line to use the official channel-messaging base image
+  image: channel-messaging:v1
+
+  # Uncomment the next two lines to build from a local configuration repo
+  #build: ../configuration
+  #dockerfile: docker/build/channel-messaging/Dockerfile
+
+  container_name: channel-messaging
+  volumes:
+    - .:/edx/app/channel-messaging/channel-messaging
+  command: /edx/app/channel-messaging/devstack.sh start
+  ports:
+    - "8765:8765" # TODO: change this to your port
