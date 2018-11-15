@@ -85,3 +85,6 @@ detect_changed_source_translations:
 	cd channel-messaging && i18n_tool changed
 
 validate_translations: fake_translations detect_changed_source_translations
+
+messaging-shell: # Run a shell on the messaging service container
+	docker exec -it messaging bash

@@ -3,15 +3,15 @@ python:
     - 3.6
 sudo: false
 
-cache: pip
-before_install:
-    - "export DISPLAY=:99.0"
-    - "sh -e /etc/init.d/xvfb start"
-install:
-    - pip install -U pip wheel codecov
-    - make requirements
-script:
-    - make validate_translations
-    - make validate
-after_success:
-    - codecov
+# cache: pip
+# before_install:
+#     - "export DISPLAY=:99.0"
+#     - "sh -e /etc/init.d/xvfb start"
+# install:
+#     - pip install -U pip wheel codecov
+#     - make requirements
+# script:
+#     - make validate_translations
+#     - make validate
+# after_success:
+#     - codecov
