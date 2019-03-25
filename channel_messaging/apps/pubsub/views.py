@@ -1,3 +1,9 @@
+"""
+This module defines the HTTP endpoint that a server can route messages to.
+That endpoint is then in charge of sending data along to channel groups.
+"""
+import json
+
 from asgiref.sync import async_to_sync
 from channels.layers import get_channel_layer
 from django.http import HttpResponse
@@ -24,9 +30,7 @@ def task_completed(request, course_id):
     In a diferent browser tab, make a request to 'http://localhost:8765/gradebook/task_completed/course-v1:edX+DemoX+Demo_Course/'
     You should see 'foobar' logged to the console in your websocket client tab.
     """
-    payload = {
-        'type': 'task_message',
-        'message': 'foobar',
-    }
-    group_send(group_name(course_id), payload)
+    data = json.loads(request.body)
+    data['type'] = 'task_message'
+    group_send(group_name(course_id), data)
     return HttpResponse(content='ok')
